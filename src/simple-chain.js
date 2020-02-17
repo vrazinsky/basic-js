@@ -1,23 +1,33 @@
-const chainMaker = {
+const chainMaker = {  
+  arr: [],
   getLength() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    return this.arr.length;
   },
   addLink(value) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    var obj = Object.assign({}, this);   
+    obj.arr = [...this.arr]
+    obj.arr.push(value);
+    return obj;
   },
   removeLink(position) {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    position = Number(position);
+    if (Number.isNaN(position) || position <= 0 || position > this.arr.length)
+      throw new Error();      
+      var obj = Object.assign({}, this);   
+      obj.arr = [...this.arr]
+    obj.arr.splice(position-1,1);    
+    return obj;
   },
   reverseChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+    var obj = Object.assign({}, this);      
+    obj.arr = [...this.arr]
+    obj.arr = obj.arr.reverse();
+    return obj;
   },
-  finishChain() {
-    throw 'Not implemented';
-    // remove line with error and write your code here
+  finishChain() {   
+    var res = this.arr.map(el =>  {return '( ' + el + ' )'}).join('~~');
+    this.arr = [] 
+    return res;
   }
 };
 
